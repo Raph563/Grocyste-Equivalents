@@ -245,8 +245,8 @@ function shoppingRangeRenderedItems(apiItems) {
 
 function shoppingRangeColumnIndexes(table) {
   const labels = [...table.querySelectorAll('thead th')].map(node => node.textContent.replace(/\s+/g, ' ').trim().toLocaleLowerCase('fr-FR'));
-  const historicalUnit = labels.findIndex(label => (label.includes('dernier prix') || label.includes('coût historique')) && label.includes('unité'));
-  const currentTotal = labels.findIndex(label => (label.includes('dernier prix') || label.includes('prix actuel')) && label.includes('total'));
+  const historicalUnit = labels.findIndex(label => (label.includes('dernier prix') || label.includes('coût historique') || label.includes('last price')) && (label.includes('unité') || label.includes('unit')));
+  const currentTotal = labels.findIndex(label => (label.includes('dernier prix') || label.includes('prix actuel') || label.includes('last price')) && label.includes('total'));
   if (historicalUnit < 0 || currentTotal < 0) throw new Error('Colonnes de prix introuvables');
   return { historicalUnit, currentTotal };
 }
@@ -254,11 +254,18 @@ function shoppingRangeColumnIndexes(table) {
 function shoppingRangeApply(model) {
   const table = document.querySelector('#shoppinglist-table');
   if (!table) return;
-  const indexes = shoppingRangeColumnIndexes(table);
-  table.querySelectorAll('thead th')[indexes.historicalUnit].textContent = 'Coût historique (unité)';
-  table.querySelectorAll('thead th')[indexes.currentTotal].textContent = 'Prix actuel min–max';
+  let indexes;try{indexes=shoppingRangeColumnIndexes(table);}catch{indexes=null;}
+  let companion=null;
+  if(indexes){table.querySelectorAll('thead th')[indexes.historicalUnit].textContent = 'Coût historique (unité)';table.querySelectorAll('thead th')[indexes.currentTotal].textContent = 'Prix actuel min–max';}
+  else {
+    companion=document.getElementById('grocyste-shopping-ranges');
+    if(!companion){companion=document.createElement('section');companion.id='grocyste-shopping-ranges';companion.className='card p-3 my-3';table.parentElement.after(companion);}
+    companion.replaceChildren();const title=document.createElement('h3');title.textContent='Fourchettes de prix actuels';companion.append(title);
+  }
   for (const line of model.lines) {
-    const cell = document.querySelector(`#shoppinglistitem-${line.shopping_list_id}-row`)?.cells[indexes.currentTotal];
+    const row=document.querySelector(`#shoppinglistitem-${line.shopping_list_id}-row`);
+    let cell=indexes?row?.cells[indexes.currentTotal]:null;
+    if(companion&&row){cell=document.createElement('div');const name=document.createElement('strong');name.textContent=row.cells[1]?.textContent?.trim()||`Produit ${line.owner_product_id}`;companion.append(name,cell);}
     if (!cell) continue;
     const view = shoppingRangeLineView(line);
     cell.replaceChildren();
@@ -272,8 +279,9 @@ function shoppingRangeApply(model) {
     details.append(explanation);
     cell.append(details);
   }
-  const total = document.querySelector('#total-value');
+  const total = indexes?document.querySelector('#total-value'):document.createElement('p');
   if (total) {
+    if(companion){total.className='cu-shopping-range-total';companion.append(total);}
     const view = shoppingRangeTotalView(model.totals);
     total.classList.remove('locale-number', 'locale-number-currency', 'cu-range-complete', 'cu-shopping-total-partial');
     total.classList.add(view.css);

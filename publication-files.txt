@@ -19,4 +19,5 @@ src/equivalents/shopping-range.mjs
 src/ui/budget.css
 src/ui/shopping-range-browser.mjs
 test/equivalent-range-calculator.test.mjs
+test/shopping-columns.test.mjs
 test/shopping-range-browser.test.mjs
