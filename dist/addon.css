@@ -1,0 +1,18 @@
+#courses-u-budget { color: inherit; background: inherit; overflow-wrap: anywhere; }
+#courses-u-budget h3 { font-size: 1.2rem; margin-bottom: .6rem; }
+#courses-u-budget p { margin: .4rem 0 .7rem; }
+#courses-u-budget summary { cursor: pointer; padding: .5rem 0; }
+#courses-u-budget summary:focus-visible, #courses-u-budget a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+#courses-u-budget .cu-budget-lines { list-style: none; padding: 0; margin: .5rem 0 0; }
+#courses-u-budget .cu-budget-lines li { border-top: 1px solid currentColor; padding: .8rem 0; }
+#courses-u-budget .cu-budget-heading { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .3rem 1rem; }
+#courses-u-budget .cu-budget-source { font-size: .9em; }
+#selectedRecipeCard .cu-reference-line-cost { max-width: 100%; overflow-wrap: anywhere; font-style: normal !important; }
+.cu-price-missing, .cu-shopping-total-partial { color: #b35c00; font-weight: 600; }
+.cu-shopping-range { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.cu-shopping-range summary { cursor: pointer; font-weight: 600; list-style-position: inside; }
+.cu-shopping-range summary:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.cu-shopping-range p { margin: .35rem 0 0; max-width: 28rem; font-size: .85rem; }
+.cu-range-provisional, .cu-range-missing { color: #b35c00; }
+.cu-range-complete { color: inherit; }
+@media (max-width: 480px) { #courses-u-budget .cu-budget-heading { display: block; } #courses-u-budget .cu-budget-heading strong { display: block; } }

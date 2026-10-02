@@ -1,0 +1,22 @@
+# Explicit public source tree; private state and old captures are excluded.
+.github/workflows/tests.yml
+.gitignore
+CHANGELOG.md
+LICENSE
+PROVENANCE.md
+README.md
+build-config.json
+build-files.txt
+dist/addon.css
+dist/addon.js
+manifest.json
+package.json
+publication-files.txt
+scripts/build.mjs
+src/equivalents/family-profiles.mjs
+src/equivalents/range-calculator.mjs
+src/equivalents/shopping-range.mjs
+src/ui/budget.css
+src/ui/shopping-range-browser.mjs
+test/equivalent-range-calculator.test.mjs
+test/shopping-range-browser.test.mjs

@@ -1,0 +1,14 @@
+CHANGELOG.md
+LICENSE
+PROVENANCE.md
+README.md
+build-config.json
+dist/addon.css
+dist/addon.js
+package.json
+scripts/build.mjs
+src/equivalents/family-profiles.mjs
+src/equivalents/range-calculator.mjs
+src/equivalents/shopping-range.mjs
+src/ui/budget.css
+src/ui/shopping-range-browser.mjs

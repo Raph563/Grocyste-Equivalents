@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "id": "equivalents",
+  "name": "Grocyste — Équivalents et fourchettes",
+  "version": "1.0.0",
+  "repository": "Raph563/Grocyste-Equivalents",
+  "core": ">=1.0.0 <2.0.0",
+  "grocy": [
+    "4.7.1"
+  ],
+  "dependencies": {
+    "budgets": ">=1.0.0 <2.0.0"
+  },
+  "capabilities": [
+    "grocy.read",
+    "storage",
+    "runtime.courseu"
+  ],
+  "entrypoints": {
+    "browser": "dist/addon.js",
+    "styles": "dist/addon.css"
+  },
+  "files": []
+}
